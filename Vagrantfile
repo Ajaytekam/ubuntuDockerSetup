@@ -19,7 +19,7 @@ Vagrant.configure("2") do |config|
       apt-get update -y
       apt-cache policy docker-ce
       apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y
-      usermod -aG docker $USER
+      usermod -aG docker vagrant
       sudo systemctl start docker
       sudo enable start docker
       wget https://github.com/docker/compose/releases/download/v2.14.0/docker-compose-linux-x86_64 -O /usr/local/bin/docker-compose
