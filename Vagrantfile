@@ -17,8 +17,11 @@ Vagrant.configure("2") do |config|
       curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
       echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
       apt-get update -y
+      apt-cache policy docker-ce
       apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y
-      usermod -aG docker vagrant
+      usermod -aG docker $USER
+      sudo systemctl start docker
+      sudo enable start docker
       wget https://github.com/docker/compose/releases/download/v2.14.0/docker-compose-linux-x86_64 -O /usr/local/bin/docker-compose
       chmod +x /usr/local/bin/docker-compose
   SHELL
